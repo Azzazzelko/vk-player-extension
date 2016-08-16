@@ -1,0 +1,41 @@
+{
+    "manifest_version": 2,
+    
+    "background": {
+      "scripts": [
+        "js/background.js",
+        "js/jquery.js"
+      ],
+      "persistent": false
+    },
+
+    "content_scripts" : [
+        {
+            "js":[ 
+              "js/jquery.js",
+              "js/content.js"
+            ], 
+            "matches":[ "<all_urls>" ], 
+            "run_at":"document_end"  
+        }
+    ], 
+
+    "description" : "", 
+
+    "name" : "My Userscript", 
+
+    "browser_action": {
+      "name": "Click me wtf!",
+      "default_popup": "popup.html"
+    },
+
+    "permissions" : [  
+      "<all_urls>",
+      "unlimitedStorage", 
+      "tabs", 
+      "activeTab",
+      "storage"
+    ], 
+
+    "version" : "1.0.0"
+}
