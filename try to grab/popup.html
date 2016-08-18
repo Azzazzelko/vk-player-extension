@@ -2,22 +2,26 @@
 <html>
 	<head>
   		<meta charset="UTF-8">
-    	<title>PopUp</title>
-    	<style>
-    		body{
-    			width: 450px;
-    		}
-    	</style>
+    	<title>VK Player</title>
+    	<link href="styles/jquery-ui.css" rel="stylesheet">
+		<link rel="stylesheet" href="styles/popup.css">
 	</head>
 	<body>
 
-	<button class="button-open-url">Open URL</button>
-	<button class="button-play-pause">Play\Pause</button>
-	<button class="button-prev">Prev</button>
-	<button class="button-next">Next</button>
-	<div class="now-play"></div>
+	<div class="player">
+		<div class="controls">
+			<a href="#" class="button-open-url"><!-- Open URL --></a>
+	        <a href="#" class="button-play-pause"><!-- Play\Pause --></a>
+			<a href="#" class="button-prev"><!-- Prev --></a>
+			<a href="#" class="button-next"><!-- Next --></a>
+			<span class="volume-title">Volume</span>
+			<div class="volume" id="volume"></div>
+		</div>	
+		<div class="now-play"></div>
+	</div>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/popup.js"></script>
 </body>
 </html>

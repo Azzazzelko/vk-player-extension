@@ -56,46 +56,46 @@
 	// clearStorage();
 
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){  //получили запрос от попАпа, создали новую вкладку и её колбеком является, отправка запроса на контент этой самой вкладки.
-      	console.log("Получил от попапа запрос!");
+      	console.log("Получил от запрос!");
 
  		if ( request.action == "create-url" ){
 			var newURL = "https://vk.com/audio";
-			chrome.tabs.create({ url: newURL }, sendSMStoContent);
+			chrome.tabs.create({ url: newURL }, sendSMStoContentFirstStart);
  		}
 
  		if ( request.action == "play-pause" ){
-			sendSMSwithOneMessage("play-button");
+			sendSMSwithOnlyAction("play-button");
  		}
 
  		if ( request.action == "prev-pls" ){
- 			sendSMSwithOneMessage("prev-button");
+ 			sendSMSwithOnlyAction("prev-button");
  		}
 
  		if ( request.action == "next-pls" ){
- 			sendSMSwithOneMessage("next-button");
+ 			sendSMSwithOnlyAction("next-button");
  		}
 
- 		if ( request.action == "idPLS" ){
-			console.log(sender.tab.id);
+ 		if ( request.action == "contentData" ){
+		    setTimeout(function(){
+				setStorageValue("nowPlay", request.nowPlay);
+				setStorageValue("nowVolume", request.nowVolume);
+			}, 1000);
  		}
 
- 		if ( request.action == "contentData" ) {
- 				console.log(request.sms);
- 				// setStorageValue(request.sms);
-			    setTimeout(function(){
-					setStorageValue(request.sms);
-				}, 1000);
+ 		if ( request.action == "volume-change" ){
+ 			console.log(request.newMyVolume);
+ 			sendSMSandDATAtoContent("newMyVolume", request.newMyVolume, "volume-change");
  		}
  
 	});
 
-	function setStorageValue(value) {
-        chrome.storage.sync.set({"fromBack" : value}, function() {
+	function setStorageValue(key, value) {
+        chrome.storage.sync.set({[key] : value}, function() {
             console.log('Settings saved');
         });
     };
 
-    function sendSMStoContent(tab){
+    function sendSMStoContentFirstStart(tab){
 		setTimeout(function(){
 	    	chrome.tabs.sendMessage(tab.id, {action:"giveVK"}, function(response) {
 	    		console.log("Все успешно отослано!");
@@ -104,15 +104,22 @@
 		}, 1000);
     };
 
-	function sendSMSwithOneMessage(sms, tabs){ //отправка запроса на новосозданную вкладку.
-		// setTimeout(function(){
-			chrome.tabs.query( {active:true, currentWindow:true}, function(tabs) {
-	    		chrome.tabs.sendMessage(id, {"action" : sms}, function(response) {
-	    			console.log("Play-button нажался на попе");
-	  			});
-			});
-		// }, 1000);
+	function sendSMSwithOnlyAction(actionValue, tabs){ //отправка запроса на новосозданную вкладку только лиш с екшеном.
+		chrome.tabs.query( {active:true, currentWindow:true}, function(tabs) {
+    		chrome.tabs.sendMessage(id, {"action" : actionValue}, function(response) {
+    			console.log("Кнопку жмакнули на поппе");
+  			});
+		});
 	};
+
+	function sendSMSandDATAtoContent(key, value, actionValue, tabs){ //отправка запроса на новосозданную вкладку.
+		chrome.tabs.query( {active:true, currentWindow:true}, function(tabs) {
+    		chrome.tabs.sendMessage(id, {[key] : value, "action" : actionValue}, function(response) {
+    			console.log("Отправил какие-то данные на контент");
+  			});
+		});
+	};
+
  //    function clearStorage() {
  //    	chrome.storage.sync.clear(function() {
 	// 		console.log("Storage clear!");
