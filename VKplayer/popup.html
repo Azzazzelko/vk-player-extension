@@ -7,15 +7,20 @@
 		<link rel="stylesheet" href="styles/popup.css">
 	</head>
 	<body>
-
+	
+	<div class="player-loader"></div>
 	<div class="player">
 		<div class="controls">
-			<a href="#" class="button-open-url"><!-- Open URL --></a>
-	        <a href="#" class="button-play-pause"><!-- Play\Pause --></a>
-			<a href="#" class="button-prev"><!-- Prev --></a>
-			<a href="#" class="button-next"><!-- Next --></a>
+			<a href="#" class="button-open-url"></a>
+	        <a href="#" class="button-play-pause"></a>
+			<a href="#" class="button-prev"></a>
+			<a href="#" class="button-next"></a>
 			<span class="volume-title">Volume</span>
 			<div class="volume" id="volume"></div>
+			<div class="progress-wrap">
+				<div class="progress-loading"></div>
+				<div class="progress-bar" id="progress-bar"></div>
+			</div>
 		</div>	
 		<div class="now-play"></div>
 	</div>

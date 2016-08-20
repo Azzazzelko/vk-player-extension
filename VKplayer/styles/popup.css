@@ -14,6 +14,55 @@ body{
 	width: 500px;
 	padding: 10px;
 }
+.player-loader {
+	z-index: 999;
+	position: absolute;
+	width: 500px;
+    height: 146px;
+    background: url(../images/player-loader.gif) no-repeat;
+    background-size: cover;
+    background-position-y: -112px;
+}
+@keyframes slider_loading {
+	0% {
+	    background-position: 0 0;
+	}
+	100% {
+	    background-position: 9px 0;
+	}
+}
+.progress-wrap{
+	margin: 15px 0px 5px 0px;
+	height: 4px;
+	position: relative;
+}
+.progress-loading{
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	height: 4px;
+    background: #e1e8ee;
+    background-image: url(/images/audio_progress2.png);
+    background-position: 0 0;
+    animation: slider_loading 300ms linear infinite;
+}
+.progress-bar{
+	width: 100%;
+	height: 4px;
+	border: none !important;
+	cursor: pointer;
+	background: #e1e8ee;
+}
+.progress-bar .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min {
+	background: #577ca1 !important ;
+    box-shadow: rgb(11, 41, 204) 0px 0px 5px 4px;
+}	
+.progress-bar .ui-slider-handle.ui-corner-all.ui-state-default{
+	cursor: pointer;
+	top: -5px;
+	border-radius: 50%;
+	outline: none;
+}
 .button-play-pause{
     width: 45px;
     height: 45px;
@@ -22,7 +71,7 @@ body{
     border-radius: 50%;
     position: relative;
     margin-right: 7px;
-	transition: all 0.3s linear;
+	transition: background 0.3s linear, border 0.3s linear;
 }
 .button-play-pause:hover:after,
 .button-play-pause:active:after{
@@ -33,7 +82,7 @@ body{
 	border: 2px solid white;
 }
 .button-play-pause:after{
-	transition: all 0.3s linear;
+	transition: background 0.3s linear, border 0.3s linear;
 	content: " ";
     position: absolute;
     top: 0;
@@ -44,6 +93,16 @@ body{
     height: 26px;
     bottom: 0;
     margin: auto;
+}
+.pause-now:after{
+	background: url(../images/pause.svg) no-repeat;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+}
+.pause-now:hover:after,
+.pause-now:active:after{
+	background: url(../images/pause-hover.svg) no-repeat;
 }
 .button-prev{
 	position: relative;
@@ -129,6 +188,7 @@ body{
 .audio_page_player_title_performer{
 	font-size: 16px;
 	font-weight: bold;
+	color: #1BB0FF;
 }
 .audio_page_player_title_song{
 	font-size: 16px;
@@ -148,6 +208,10 @@ body{
     background-size: contain;
 }
 .now-play{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
 	padding: 5px;
-	box-shadow: 0 0 15px 3px;
+	box-shadow: 0 0 15px 3px #1BB0FF;
 }
