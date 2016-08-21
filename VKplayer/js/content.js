@@ -19,10 +19,9 @@
 //getAudioPlayer().getCurrentAudio()[5]
 
 
-getCurrentAudioDuration();
-
 var nowPlayTimer; //для обнуления таймаута в ивенте чекающем див на нау плейинг
-var currentAudioDuration; //текущее положение прогресс-бара
+var currentAudioDuration; //для текущего положение прогресс-бара
+
 var volumeLine = $(".slider.audio_page_player_volume_slider.slider_size_1 .slider_amount"); //Ползунок когда меняем ручками в ВК
 var progressBar = $(".slider.audio_page_player_track_slider.slider_size_1 .slider_amount");
 var playButton = $('.audio_page_player_play');
@@ -37,10 +36,6 @@ chrome.runtime.onMessage.addListener(function(request){ //получаем вх�
 		sendSMS("nowPlay", getNowPlay(), "contentData");
 		sendSMS("nowVolume", getCurrentVolume(), "contentData");
 		sendSMS("duration", getAudioDuration(), "contentData");
-		// getCurrentAudioDuration();
-		// setTimeout(function(){
-		// 	sendSMS("nowProgress", currentAudioDuration, "contentData");
-		// }, 750);
 	}
 
 	if ( request.action == "play-button" ){
@@ -78,11 +73,11 @@ function getStartOrPauseStatus(){
 	} else {
 		return "playing";
 	}
-}
+};
 
 function getNowPlay(){
 	return nowPlay = nowPlaying.html();
-}
+};
 
 function getCurrentVolume(){
 	var width = volumeLine.css("width"),
@@ -91,12 +86,12 @@ function getCurrentVolume(){
 	    result = (_width*100/max).toFixed(2);
 
 	return result;
-}
+};
 
 function getAudioDuration(){ //получаем продолжительность песенки в секундах.
 	var audioData = $(".audio_row_current").attr("data-audio") || $(".audio_page_player._audio_page_player._audio_row").attr("data-audio");
 	return JSON.parse(audioData)[5];
-}
+};
 
 function getCurrentAudioDuration(){
 	setTimeout(function(){
@@ -143,6 +138,6 @@ function createHideVolControl(volumeValue){  //Создаем скрытый д�
 	}
 
 	$(".hideVolume").trigger("click"); 
-}
+};
 
 
