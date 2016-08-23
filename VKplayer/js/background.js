@@ -1,18 +1,19 @@
 (function(){
 
 	// storage.clearStorage();
-	var idMyOpenTab; //айди таба, который я открываю приложением
+	var idMyOpenTab, //айди таба, который я открываю приложением
+	    findPlayer = 0; //значение, есть ли вообще чем управлять, изначально фолс. При проверки, играет ли плеер, значит к нему доступ есть, значит он существует
 
 	var storage = {
 
 		setStorageValue : function(key, value){ //записать значения в хранилище
-	        chrome.storage.sync.set({[key] : value}, function() {
+	        chrome.storage.local.set({[key] : value}, function() {
             	console.log('Settings to storage are saved.');
        	 	});
 		},
 
 		clearStorage : function(){ //очистка хранилища
-	    	chrome.storage.sync.clear(function() {
+	    	chrome.storage.local.clear(function() {
 				console.log("Storage clear!");
     		});
 		}
@@ -30,9 +31,13 @@
 		},
 
 		sendSMSwithOnlyAction : function(actionValue, tabs){   //отправка запроса на новосозданную вкладку только лиш с екшеном.
+			findPlayer = 0;
 			chrome.tabs.query( {active:true, currentWindow:true}, function(tabs) {
     			chrome.tabs.sendMessage(idMyOpenTab, {"action" : actionValue}, function(response) {
     				console.log("Отправил action запрос на контент.");
+    				if ( response ){
+    					findPlayer = 1;
+    				}
   				});
 			});		
 		},
@@ -78,9 +83,26 @@
  				break;
  			case "playORpause" :
  				send.sendSMSwithOnlyAction("playORpause");
+ 					setTimeout(function(){
+ 							console.log(findPlayer);
+ 						if ( findPlayer == 0 ) {   //проверка с тайм-аутом, если есть доступ к управлению плеером, то норм, если нет доступа, тормозим плеер, ибо он может еще играть, думая что вк еще открыто и играет
+			 				setTimeout(function(){
+								storage.setStorageValue("startOrPauseStatus", "block");
+							}, 500);
+ 						};
+ 					}, 500);
  				break;
  			case "currentProgressBar":
 				storage.setStorageValue("nowProgress", request.nowProgress);
+ 				break;
+ 			case "vol-mute":
+				send.sendSMSwithOnlyAction("setVolMute");
+ 				break;
+ 			case "vol-full":
+				send.sendSMSwithOnlyAction("setVolFull");
+ 				break;	
+ 			case "position-change":
+				send.sendSMSandDATAtoContent("newMyPosition", request.newMyPosition, "position-change");
  				break;
  			case "startOrPauseStatus":
  				setTimeout(function(){

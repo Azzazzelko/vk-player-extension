@@ -17,14 +17,14 @@
               "js/ResizeSensor.js",
               "js/content.js"
             ], 
-            "matches":[ "<all_urls>" ], 
+            "matches":[ "https://vk.com/*", "http://vk.com/*" ],      
             "run_at":"document_end"  
         }
     ], 
 
-    "description" : "", 
+    "description" : "Vk-player, позволяющий управлять открытой вкладкой аудиозаписей сайта Вконтакте.", 
 
-    "name" : "My Userscript", 
+    "name" : "VK-Player", 
 
     "browser_action": {
       "name": "Click me wtf!",

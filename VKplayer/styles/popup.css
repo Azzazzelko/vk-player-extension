@@ -9,6 +9,32 @@ body{
 	margin: 0;
 	padding: 0;
 }
+.block-control{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    background: rgba(0,0,0,0.6);
+}
+.block-control:after{
+    content: " ";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    top: 81px;
+    left: 31px;
+    box-shadow: 0 0 35px 15px white;
+}
+.block-text{
+    color: white;
+    padding: 20px;
+    text-align: end;
+    font-size: 16px;
+    font-style: initial;
+    line-height: 24px;
+}
 .player {
 	width: 500px;
 	padding: 10px;
@@ -41,7 +67,7 @@ body{
 	margin-bottom: 10px;
 }
 .player-loader{
-	z-index: 999;
+	z-index: 9999;
 	position: absolute;
 	width: 500px;
     height: 163px;
@@ -58,6 +84,7 @@ body{
     background: url(../images/newPlayer/circle.png) no-repeat;
     background-size: contain;
     left: 22px;
+    z-index: 999;
 }
 .button-open-url:after{
     width: 15px;
@@ -79,7 +106,7 @@ body{
     position: relative;
     vertical-align: middle;
     z-index: 2;
-}
+}   
 .button-play-pause:after{
     content: " ";
     background: url(../images/newPlayer/play-in.png) no-repeat;
@@ -93,6 +120,36 @@ body{
     right: 0;
     margin: auto;
 }
+.button-play-pause:hover,
+.button-prev:hover,
+.button-next:hover,
+.button-vol-mute:hover,
+.button-vol-full:hover,
+.button-open-url:hover{
+    -webkit-filter: brightness(125%);
+}
+.button-play-pause:active{
+    background: url(../images/newPlayer/big-but-active.png) no-repeat;
+    background-size: contain;
+}
+.button-play-pause:active:after{
+    bottom: -1px;
+    left: 5px;
+}
+.pause-now:after{
+    background: url(../images/newPlayer/pause.png) no-repeat;
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    top: 0px;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+}
+.pause-now:active:after{
+    bottom: -1px;
+    left: 2px;
+}
 .button-prev{
 	background: url(../images/newPlayer/left-but.png) no-repeat;
     background-size: contain;
@@ -103,6 +160,10 @@ body{
     vertical-align: middle;
     position: relative;
 }
+.button-prev:active{
+    background: url(../images/newPlayer/qeqw.png) no-repeat;
+    background-size: contain;
+}
 .button-prev:after{
 	content: " ";
     background: url(../images/newPlayer/right-triangle.png) no-repeat;
@@ -111,11 +172,23 @@ body{
     height: 13px;
     position: absolute;
     top: 0px;
-    bottom: 1px;
+    bottom: 0px;
     left: 0px;
     right: 7px;
     margin: auto;
     transform: rotate(180deg);
+}
+.button-prev:active:after{
+    right: 5px;
+    bottom: -1px;
+}
+.button-next:active{
+    background: url(../images/newPlayer/right-but-active.png) no-repeat;
+    background-size: contain;
+}
+.button-next:active:after{
+    right: 9px;
+    bottom: 2px;
 }
 .button-next{
     background: url(../images/newPlayer/right-but.png) no-repeat;
@@ -203,6 +276,14 @@ body{
     left: 110px;
     top: 83px;
 }
+.progress-bar:after{
+    content: " ";
+    width: 100%;
+    height: 15px;
+    display: block;
+    position: absolute;
+    top: 0px;
+}
 .progress-bar .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min{
 	border-radius: 5px;
 	border: 2px solid rgb(112, 33, 88);
@@ -242,11 +323,12 @@ body{
 .now-play {
 	background-color: rgb(17, 17, 19);
 	box-shadow: 0.5px 0.866px 0px 0px rgba(137, 137, 150, 0.12),inset 0.5px 0.866px 1px 0px rgba(0, 0, 0, 0.004);
-	padding: 10px;
+    padding: 10px 50px 10px 10px;
 	font-size: 16px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+    position: relative;
 	color: rgb(255,127,135);
 }
 .audio_page_player_title_performer{
@@ -256,5 +338,9 @@ body{
 .audio_page_player_title_song{
 	color: rgb(255,127,135);
 }
-
+.duration{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 
