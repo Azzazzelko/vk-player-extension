@@ -161,7 +161,7 @@ body{
     position: relative;
 }
 .button-prev:active{
-    background: url(../images/newPlayer/qeqw.png) no-repeat;
+    background: url(../images/newPlayer/left-but-active.png) no-repeat;
     background-size: contain;
 }
 .button-prev:after{
