@@ -9,6 +9,7 @@ $(document).ready(function () {
 	    audioDuration, 		 //значение полной длительности композиции
 	    uCanRunBar = 0; 	 //значение, что б синхронно запускать бар с длительностью, флаг, выключенный.
 
+
 	var $buttons = { //кнопочки
 
 		$buVkOpen : $(".button-open-url"),
@@ -300,3 +301,4 @@ $(document).ready(function () {
 		}, 1250);	
 	};
 });
+

@@ -1,8 +1,8 @@
 (function(){
 
 	// storage.clearStorage();
-	var idMyOpenTab, //айди таба, который я открываю приложением
-	    findPlayer = 0; //значение, есть ли вообще чем управлять, изначально фолс. При проверки, играет ли плеер, значит к нему доступ есть, значит он существует
+	var idMyOpenTab, 	     //айди таба, который я открываю приложением
+	    findPlayer = 0; 	 //значение, есть ли вообще чем управлять, изначально фолс. При проверки, играет ли плеер, значит к нему доступ есть, значит он существует
 
 	var storage = {
 
@@ -51,6 +51,43 @@
 		}
 	};
 
+	var notify = {
+
+		myNotification : 0,   //нотификация, что б обнулять предыдущую.
+
+		notifyTimeout : 0,    //нотификация, что б обнулять предыдущую.
+
+		getFullMusicName : function(recive){  //получаем название и автора в одну строку
+			if ( recive ) {
+				var fullSong = "";
+
+				$(recive).each(function(index, el) {
+					var $this = $(this);
+					fullSong = fullSong+$this.text();
+				});
+
+				notify.createNotification("Сейчас играет", fullSong);
+			}
+		},
+
+		createNotification : function(theTitle, theBody){  //создаем нотификацию
+			if (notify.myNotification) notify.myNotification.close();
+			if (notify.notifyTimeout) clearTimeout(notify.notifyTimeout);
+
+			var options = {  
+				body: theBody,
+				icon: "../images/vk.png"
+			};
+
+			notify.myNotification = new Notification(theTitle,options);
+
+			notify.notifyTimeout = setTimeout(function(){
+				notify.myNotification.close()
+			}, 4000);			
+		}
+
+	} 
+
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){  //получили запрос от попАпа, создали новую вкладку и её колбеком является, отправка запроса на контент этой самой вкладки.
       	console.log("Получил запрос от", ( sender.frameId == 0 ) ? "Vk." : "Extension." );
  
@@ -74,6 +111,7 @@
 					if (!!request.nowVolume) storage.setStorageValue("nowVolume", request.nowVolume);
 					if (!!request.duration) storage.setStorageValue("duration", request.duration);
 				}, 1000);
+	  			notify.getFullMusicName(request.nowPlay);
  				break;
  			case "volume-change" :
 	 			send.sendSMSandDATAtoContent("newMyVolume", request.newMyVolume, "volume-change");

@@ -37,6 +37,7 @@ body{
 }
 .player {
 	width: 500px;
+    height: 163px;
 	padding: 10px;
 }
 .player:after{

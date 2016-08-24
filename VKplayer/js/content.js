@@ -11,6 +11,7 @@ var lotusMod = (function(){
 
 		$addMusicButton : $(".audio_page_player_btn.audio_page_player_add._audio_page_player_add"), //спрятанная фигня, если чужую музыку слушаем, прогресс бар будет меньше, а нам нужна его ширина..
 		$volumeLine : $(".slider.audio_page_player_volume_slider.slider_size_1 .slider_amount"), //Ползунок когда меняем ручками в ВК
+		$progressBarFullWidth : $(".slider.audio_page_player_track_slider.slider_size_1"),          //полный прогресс бар  с его полными размерами на данный момент
 		$progressBar : $(".slider.audio_page_player_track_slider.slider_size_1 .slider_amount"),
 		$playButton : $('.audio_page_player_play'),
 		$prevButton : $('.audio_page_player_prev'),
@@ -49,7 +50,7 @@ var lotusMod = (function(){
 		getCurrentAudioDuration : function(){ //значение текущего прогресс бара --> результат в секундах.
 			setTimeout(function(){
 				var width = $divs.$progressBar.css("width"),
-				    max = ( $divs.$addMusicButton.css("display") == "none" ) ? 288 : 264; //размер прогресс бара у вк плеера
+				    max = $divs.$progressBarFullWidth.width(); //размер прогресс бара у вк плеера
 			    duration = get.getAudioDuration(); //получаем длительность копозиции
 		    	_width = width.substring(0,width.length-2),
 		    	procent = (_width*100/max);

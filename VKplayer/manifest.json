@@ -36,7 +36,8 @@
       "unlimitedStorage", 
       "tabs", 
       "activeTab",
-      "storage"
+      "storage",
+      "notifications"
     ], 
 
     "version" : "1.0.0"
