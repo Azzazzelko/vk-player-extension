@@ -4,7 +4,7 @@
     "background": {
       "scripts": [
         "js/background.js",
-        "js/jquery.js"
+        "js/libs/jquery.js"
       ],
       "persistent": false
     },
@@ -14,9 +14,9 @@
     "content_scripts" : [
         {
             "js":[ 
-              "js/jquery.js",
-              "js/ElementQueries.js",
-              "js/ResizeSensor.js",
+              "js/libs/jquery.js",
+              "js/libs/ElementQueries.js",
+              "js/libs/ResizeSensor.js",
               "js/content.js"
             ], 
             "matches":[ "https://vk.com/*", "http://vk.com/*" ],      
@@ -31,6 +31,12 @@
     "browser_action": {
       "name": "Click me wtf!",
       "default_popup": "popup.html"
+    },
+
+    "icons": { //Иконки разных размеров
+      "16": "/images/play_16.png",
+      "48": "/images/play_48.png",
+      "128": "/images/play_128.png"
     },
 
     "permissions" : [  

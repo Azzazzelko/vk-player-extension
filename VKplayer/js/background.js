@@ -66,14 +66,16 @@
 					fullSong = fullSong+$this.text();
 				});
 
-				notify.createNotification("Сейчас играет", fullSong);
+				notify.createNotification("Сейчас играет", fullSong, localStorage.notifications_status);
 			}
 		},
 
-		createNotification : function(theTitle, theBody){  //создаем нотификацию
+		createNotification : function(theTitle, theBody, status){  //создаем нотификацию
 			if (notify.myNotification) notify.myNotification.close();
 			if (notify.notifyTimeout) clearTimeout(notify.notifyTimeout);
-
+			var status = status || 1;
+			if (status == 0) return;
+			
 			var options = {  
 				body: theBody,
 				icon: "../images/vk.png"
@@ -85,8 +87,7 @@
 				notify.myNotification.close()
 			}, 4000);			
 		}
-
-	} 
+	};
 
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){  //получили запрос от попАпа, создали новую вкладку и её колбеком является, отправка запроса на контент этой самой вкладки.
       	console.log("Получил запрос от", ( sender.frameId == 0 ) ? "Vk." : "Extension." );

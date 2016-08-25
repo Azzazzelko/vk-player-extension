@@ -43,15 +43,15 @@ var lotusMod = (function(){
 		},
 
 		getAudioDuration : function(){ //получаем продолжительность песенки в секундах.
-			var audioData = $(".audio_row_current").attr("data-audio") || $(".audio_page_player._audio_page_player._audio_row").attr("data-audio");
-			return JSON.parse(audioData)[5];
+			var audioData = create.createHideDurationAndGet() || JSON.parse( $(".audio_page_player._audio_page_player._audio_row").attr("data-audio") )[5];
+			return audioData;
 		},
 
 		getCurrentAudioDuration : function(){ //значение текущего прогресс бара --> результат в секундах.
 			setTimeout(function(){
 				var width = $divs.$progressBar.css("width"),
 				    max = $divs.$progressBarFullWidth.width(); //размер прогресс бара у вк плеера
-			    duration = get.getAudioDuration(); //получаем длительность копозиции
+			    duration = get.getAudioDuration(); 			   //получаем длительность копозиции
 		    	_width = width.substring(0,width.length-2),
 		    	procent = (_width*100/max);
 		    	result = (duration/100*procent).toFixed(4);
@@ -98,6 +98,23 @@ var lotusMod = (function(){
 			}
 
 			$(".hideProgress").trigger("click"); 
+		},
+
+		createHideDurationAndGet : function(){
+			var func = "document.querySelector('.hideDuration').innerHTML = getAudioPlayer()._currentAudio[5]";
+			var elem = $(".hideDuration");
+
+			if ( elem.length == 0 ) {
+				var div = '<button class="hideDuration" style="display:none" onclick="' + func + '"></button>';
+				$('.audio_page_player._audio_page_player').append(div);
+			} else {
+				var onclick = func;
+				elem.attr("onclick", onclick);
+			}
+
+			elem.trigger("click"); 
+
+			return elem.html();
 		}
 	};
 
@@ -168,7 +185,7 @@ var lotusMod = (function(){
 			new ResizeSensor($divs.$volumeLine, this.volumeChange);
 		}
 	};
-
+		console.log("я Запустился блек модуль");
 	return {
 		run : main
 	}
@@ -176,8 +193,3 @@ var lotusMod = (function(){
 }());
 
 lotusMod.run();
-
-
-
-
-

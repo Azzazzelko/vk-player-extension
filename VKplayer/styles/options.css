@@ -54,7 +54,7 @@ body{
     margin: 0 auto;
 }
 
-.title-change-skin{
+.title-h1{
     text-align: center;
     color: black;
     padding: 0;
@@ -137,3 +137,42 @@ body{
     box-shadow: 0px 0px 10px 2px black;
     border-radius: 10px;
 }
+
+.notifications-list{
+    list-style: none;
+    text-align: center;
+    margin: 20px 0 40px 0;
+    font-size: 20px;
+}
+
+.notifications__radio {
+    display: none;
+}
+
+.notifications-item {
+    color: black;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.notifications__label-in{
+    position: relative;
+    padding-left: 5px;
+}
+
+.notifications__label-in:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.notifications__radio:checked ~ .notifications__label-in:before{
+    box-shadow: 0 0 5px 3px green, 0 0 0 6px black inset;
+    background: #92f192;
+}
+
