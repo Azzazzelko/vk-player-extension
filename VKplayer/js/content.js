@@ -1,5 +1,5 @@
 var lotusMod = (function(){
-
+	
 	var nowPlayTimer,         	//для обнуления таймаута в ивенте чекающем див на нау плейинг
     	currentAudioDuration; 	//для текущего положение прогресс-бара
 

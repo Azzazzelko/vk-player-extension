@@ -9,6 +9,8 @@
       "persistent": false
     },
 
+    "options_page": "options.html",
+
     "content_scripts" : [
         {
             "js":[ 

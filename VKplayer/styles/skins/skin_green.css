@@ -1,0 +1,348 @@
+*{
+	box-sizing: border-box;
+}
+body{
+    font-family: "Times New Roman";
+	background: url(../../images/newPlayer/bg.png);
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.block-control{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    background: rgba(0,0,0,0.6);
+}
+.block-control:after{
+    content: " ";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border-radius: 50%;
+    top: 81px;
+    left: 31px;
+    box-shadow: 0 0 35px 15px white;
+}
+.block-text{
+    color: white;
+    padding: 20px;
+    text-align: end;
+    font-size: 16px;
+    font-style: initial;
+    line-height: 24px;
+}
+.player {
+	width: 500px;
+    height: 163px;
+	padding: 10px;
+}
+.player:after{
+	content: "";
+    position: absolute;
+    background: url(../../images/newPlayer/Right-side-volume.png) no-repeat;
+    background-size: contain;
+    width: 33px;
+    height: 125px;
+    transform: rotate(90deg);
+    top: -23px;
+    left: 321px;
+}
+.player:before{
+    content: "";
+    position: absolute;
+    background: url(../../images/newPlayer/left-side-volume.png) no-repeat;
+    background-size: contain;
+    width: 33px;
+    height: 125px;
+    transform: rotate(90deg);
+    top: 18px;
+    left: 321px;
+}
+.controls{
+	padding: 10px 0;
+	position: relative;
+	margin-bottom: 10px;
+}
+.player-loader{
+	z-index: 9999;
+	position: absolute;
+	width: 500px;
+    height: 163px;
+    background: url(../../images/player-loader.gif) no-repeat;
+    background-size: cover;
+    background-position-y: -104px;
+}
+.button-open-url{
+    top: 71px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: url(../../images/newPlayer/circle.png) no-repeat;
+    background-size: contain;
+    left: 22px;
+    z-index: 999;
+}
+.button-open-url:after{
+    width: 15px;
+    content: "";
+    display: block;
+    position: absolute;
+    background: url(../../images/skins/skin_green/vk-open.svg) no-repeat;
+    background-size: contain;
+    height: 15px;
+    top: 11px;
+    left: 7px;
+}
+.button-play-pause{
+    background: url(../../images/newPlayer/circle.png) no-repeat;
+    width: 73px;
+    height: 75px;
+    display: inline-block;
+    background-size: contain;
+    position: relative;
+    vertical-align: middle;
+    z-index: 2;
+}   
+.button-play-pause:after{
+    content: " ";
+    background: url(../../images/skins/skin_green/play-in.png) no-repeat;
+    background-size: cover;
+    width: 42px;
+    height: 47px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3px;
+    right: 0;
+    margin: auto;
+}
+.button-play-pause:hover,
+.button-prev:hover,
+.button-next:hover,
+.button-vol-mute:hover,
+.button-vol-full:hover,
+.button-open-url:hover{
+    -webkit-filter: brightness(125%);
+}
+.button-play-pause:active{
+    background: url(../../images/newPlayer/big-but-active.png) no-repeat;
+    background-size: contain;
+}
+.button-play-pause:active:after{
+    bottom: -1px;
+    left: 5px;
+}
+.pause-now:after{
+    background: url(../../images/skins/skin_green/pause.png) no-repeat;
+    background-size: cover;
+    width: 47px;
+    height: 47px;
+    top: 0px;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+}
+.pause-now:active:after{
+    bottom: -1px;
+    left: 2px;
+}
+.button-prev{
+	background: url(../../images/newPlayer/left-but.png) no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 40px;
+    display: inline-block;
+    margin-right: -20px;
+    vertical-align: middle;
+    position: relative;
+}
+.button-prev:active{
+    background: url(../../images/newPlayer/left-but-active.png) no-repeat;
+    background-size: contain;
+}
+.button-prev:after{
+	content: " ";
+    background: url(../../images/skins/skin_green/right-triangle.png) no-repeat;
+    background-size: cover;
+    width: 22px;
+    height: 13px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 7px;
+    margin: auto;
+    transform: rotate(180deg);
+}
+.button-prev:active:after{
+    right: 5px;
+    bottom: -1px;
+}
+.button-next:active{
+    background: url(../../images/newPlayer/right-but-active.png) no-repeat;
+    background-size: contain;
+}
+.button-next:active:after{
+    right: 9px;
+    bottom: 2px;
+}
+.button-next{
+    background: url(../../images/newPlayer/right-but.png) no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 40px;
+    display: inline-block;
+    margin-left: -15px;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+}
+.button-next:after{
+	content: " ";
+    background: url(../../images/skins/skin_green/right-triangle.png) no-repeat;
+    background-size: cover;
+    width: 22px;
+    height: 13px;
+    position: absolute;
+    top: 0px;
+    bottom: 1px;
+    left: 0px;
+    right: 7px;
+    margin: auto;
+}
+.button-vol-mute{
+	vertical-align: middle;
+    display: inline-block;
+    margin: 0 20px 0 50px;
+    background: url(../../images/skins/skin_green/volume-muted.svg) no-repeat;
+    background-size: contain;
+    width: 16px;
+    height: 26px;
+}
+.button-vol-full{
+    vertical-align: middle;
+    display: inline-block;
+    background: url(../../images/skins/skin_green/volume-full.svg) no-repeat;
+    background-size: contain;
+    width: 24px;
+    height: 25px;
+    margin-left: 25px;
+}
+.volume {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	width: 150px;
+	height: 19px;
+	border: none !important;
+	background: url(../../images/newPlayer/volume-bg.png) no-repeat;
+	vertical-align: middle;
+}
+.volume .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min{
+	background: url(../../images/skins/skin_green/volume-line.png) no-repeat;
+	background-position: 7px 4px;
+    background-clip: content-box;
+    padding-right: 16px;
+}
+.volume .ui-slider-handle.ui-corner-all.ui-state-default{
+	outline: none;
+	background: transparent;
+	border: none;
+}
+.volume .ui-slider-handle.ui-corner-all.ui-state-default:after{
+    background: url(../../images/newPlayer/Handler.png) no-repeat;
+    background-size: contain;
+    content: " ";
+    width: 43px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: -14px;
+    cursor: pointer;
+}
+.progress-bar {
+	cursor: pointer;
+	border: none !important;
+	background-color: black;
+    box-shadow: 0.5px 0.866px 0px 0px rgba(185, 178, 178, 0.1);
+    position: absolute;
+    width: 360px;
+    height: 5px;
+    left: 110px;
+    top: 83px;
+}
+.progress-bar:after{
+    content: " ";
+    width: 100%;
+    height: 15px;
+    display: block;
+    position: absolute;
+    top: 0px;
+}
+.progress-bar .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-min{
+	border-radius: 5px;
+	position: absolute;
+	height: 5px;
+	width: 100px;
+    border-color: rgb(40, 112, 32);
+    background-image: linear-gradient( 90deg, rgb(38,169,34) 0%, rgb(127,255,169) 100%);
+    box-shadow: 0px 0px 0px 3px rgba(58, 117, 52, 0.43);
+}
+.progress-bar .ui-slider-handle.ui-corner-all.ui-state-default {
+	border-radius: 50%;
+	background-image: linear-gradient( 90deg, rgb(59,59,64) 0%, rgb(106,106,110) 100%);
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.91);
+	width: 20px;
+	height: 20px;
+	outline: none;
+	border: none;
+	top: -8px;
+	cursor: pointer;
+}
+.progress-bar .ui-slider-handle.ui-corner-all.ui-state-default:after{
+	content: " ";
+    position: absolute;
+    display: block;
+    border: 1px solid rgb(112, 33, 88);
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.29);
+    width: 7px;
+    height: 7px;
+    top: 0;
+    left: 1px;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-color: rgb(32, 51, 112);
+    background-image: linear-gradient( 90deg, rgb(64,67,155) 0%, rgb(159,231,255) 100%);
+}
+.now-play {
+	background-color: rgb(17, 17, 19);
+	box-shadow: 0.5px 0.866px 0px 0px rgba(137, 137, 150, 0.12),inset 0.5px 0.866px 1px 0px rgba(0, 0, 0, 0.004);
+    padding: 10px 50px 10px 10px;
+	font-size: 16px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+    position: relative;
+	color: rgb(127,255,169);
+}
+.audio_page_player_title_performer{
+    color: rgb(38,169,34);
+    font-weight: bold;
+}
+.audio_page_player_title_song{
+	color: rgb(127,255,169);
+}
+.duration{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+

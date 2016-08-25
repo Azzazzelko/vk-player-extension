@@ -1,7 +1,5 @@
 $(document).ready(function () {
-	// var link = '<link rel="stylesheet" href="styles/popup(old-player).css">';
-	// $("head").append(link);
-	
+
 	//************Переменные********//
 	var intervalProBar, 	 //таймер для прогресс бара
 	    intervalDuration,    //таймер для длительность
@@ -210,7 +208,12 @@ $(document).ready(function () {
 					$divs.$allBlock.show();
 				};
 			});
-		} 
+		},
+
+		setChoosenSkin : function(){
+			var link = localStorage.current_skin;
+	    	$("head").append(link);
+		}
 	};
 
 	var sendReq = { //ф-ции отправки запросов
@@ -288,6 +291,7 @@ $(document).ready(function () {
 	loadPlayer();
 
 	function loadPlayer(){ //при запуске попапа, генерим *сейчас играет*, *громкость*, *progress bar*, проверяем играет ли ща музыка
+		storage.setChoosenSkin(); //устанавливаем выбранный пользователем скин плеера
 		storage.getStorageNowPlay("nowPlay"); //вытаскиваем инфу с хранилища, что щас играет
 		storage.getStorageAndCreateVolume("nowVolume"); //вытаскиваем инфу с хранилища где ползунок громкости
 		sendReq.sendRequestForNewProgressBar(); //запрос на состояние прогресс бара..
