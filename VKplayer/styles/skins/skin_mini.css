@@ -1,0 +1,293 @@
+*{
+	box-sizing: content-box;
+}
+body{
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #750564), color-stop(100%, #70419c));
+    font-family: "Times New Roman";
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+    .player-loader{
+        display: none;
+    }
+    .block-control{
+        display: none;
+    }
+.volume{
+    display: none;
+}
+.progress-bar{
+    display: none;
+}
+.now-play{
+    display: none;
+}
+.player{
+    width: 307px;
+    height: 43px;
+}
+.player:before,
+.player:after{
+    display: none;
+}
+.button-open-url,
+.button-prev,
+.button-play-pause,
+.button-next,
+.button-vol-mute,
+.button-vol-full{
+    width: 70px;
+    height: 50px;
+    background-image: linear-gradient( to top, rgb(40,40,46) 0%, rgb(55,55,60) 100%);
+    border-radius: 0;
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    vertical-align: middle;
+    margin: 0;
+    box-shadow: 0px -3px 0px #4c4949;
+    border-radius: 2px;
+}
+.button-open-url:after,
+.button-prev:after,
+.button-play-pause:after,
+.button-next:after,
+.button-vol-mute:after,
+.button-vol-full:after
+{
+    content: none;
+}
+
+.button-play-pause:before,
+.button-next:before,
+.button-prev:before,
+.button-vol-full:before,
+.button-vol-mute:before,
+.button-open-url:before{
+    content: " ";
+    position: absolute;
+    width: 13px;
+    height: 21px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: url(../../images/skins/skin_mini/play.png) no-repeat 8px center, url(../../images/skins/skin_mini/pause.png) no-repeat 27px center;
+    background-size: contain;
+}
+
+.button-play-pause:before{
+    width: 100%;
+}
+
+.button-prev:before{
+    background: url(../../images/skins/skin_mini/prev.png) no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 15px; 
+}
+
+.button-next:before{
+    background: url(../../images/skins/skin_mini/next.png) no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 15px;
+}
+
+.button-vol-full:before{
+    background: url(../../images/skins/skin_mini/volume-full.svg) no-repeat;
+    background-size: contain;
+    width: 28px;
+    height: 25px;
+    left: 5px;
+}
+
+.button-vol-mute:before{
+    background: url(../../images/skins/skin_mini/volume-muted.svg) no-repeat;
+    background-size: contain;
+    width: 28px;
+    height: 25px;
+    left: 10px;
+}
+
+.button-open-url:before{
+    background: url(../../images/skins/skin_mini/vk-open.svg) no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+}
+
+.controls{
+    margin: 0;
+    padding: 0;
+}
+
+.controls {
+  position: relative;
+  white-space: nowrap;
+  min-height: 33px;
+  }
+  .controls a {
+    -webkit-animation: bounceInDown 900ms 200ms ease-in-out both;
+    -moz-animation: bounceInDown 900ms 200ms ease-in-out both;
+    -ms-animation: bounceInDown 900ms 200ms ease-in-out both;
+    -o-animation: bounceInDown 900ms 200ms ease-in-out both;
+    animation: bounceInDown 900ms 200ms ease-in-out both;
+    width: 50px;
+    height: 33px;
+    position: absolute;
+    top: 0;
+        text-decoration: none;
+    padding-top: 9px;
+    outline-width: 0px;
+    z-index: 990;
+    color: #a675b3;
+    text-align: center;
+    line-height: 26px;
+    display: block; }
+    .controls a:not(.active) {
+      -webkit-box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
+      -moz-box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
+      box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3b2751), color-stop(100%, #271739));
+      background-image: -webkit-linear-gradient(#3b2751, #271739);
+      background-image: -moz-linear-gradient(#3b2751, #271739);
+      background-image: -o-linear-gradient(#3b2751, #271739);
+      background-image: linear-gradient(#3b2751, #271739);
+      text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47; }
+      .controls a:not(.active):hover, .controls a:not(.active):focus {
+        -webkit-transition: color 200ms linear;
+        -moz-transition: color 200ms linear;
+        -o-transition: color 200ms linear;
+        transition: color 200ms linear;
+        -webkit-transition: text-shadow 500ms linear;
+        -moz-transition: text-shadow 500ms linear;
+        -o-transition: text-shadow 500ms linear;
+        transition: text-shadow 500ms linear;
+        color: #caadd2;
+        text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c; }
+      .controls a:not(.active):active {
+        color: #e4e3ce !important; }
+    .controls a.active, .controls a:active {
+      -webkit-box-shadow: 0 9px 16px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px #170c22, 0 2px 1px 0 rgba(121, 65, 135, 0.5), inset 0 0 4px 3px rgba(15, 8, 22, 0.2);
+      -moz-box-shadow: 0 9px 16px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px #170c22, 0 2px 1px 0 rgba(121, 65, 135, 0.5), inset 0 0 4px 3px rgba(15, 8, 22, 0.2);
+      box-shadow: 0 9px 16px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px #170c22, 0 2px 1px 0 rgba(121, 65, 135, 0.5), inset 0 0 4px 3px rgba(15, 8, 22, 0.2);
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1f132e), color-stop(100%, #311d47));
+      background-image: -webkit-linear-gradient(#1f132e, #311d47);
+      background-image: -moz-linear-gradient(#1f132e, #311d47);
+      background-image: -o-linear-gradient(#1f132e, #311d47);
+      background-image: linear-gradient(#1f132e, #311d47);
+      text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+      color: #e4e3ce; }
+    .controls a.active {
+      z-index: 1000; }
+    .controls a:active {
+      z-index: 999; }
+    .controls a:last-of-type {
+      -webkit-border-radius: 0 7px 7px 0;
+      -moz-border-radius: 0 7px 7px 0;
+      -ms-border-radius: 0 7px 7px 0;
+      -o-border-radius: 0 7px 7px 0;
+      border-radius: 0 7px 7px 0; }
+    .controls a:first-of-type {
+      -webkit-border-radius: 7px 0 0 7px;
+      -moz-border-radius: 7px 0 0 7px;
+      -ms-border-radius: 7px 0 0 7px;
+      -o-border-radius: 7px 0 0 7px;
+      border-radius: 7px 0 0 7px;
+      left: 0; }
+    .controls a:nth-of-type(2) {
+      left: 51px; }
+    .controls a:nth-of-type(3) {
+      left: 102px; }
+    .controls a:nth-of-type(4) {
+      left: 153px; }
+    .controls a:nth-of-type(5) {
+      left: 204px; }
+    .controls a:nth-of-type(6) {
+      left: 255px; }
+    .controls a:nth-of-type(7) {
+      left: 306px; }
+    .controls a:nth-of-type(8) {
+      left: 357px; }
+    .controls a i:before {
+      margin-left: 2px;
+      font-size: 22px; }
+    .controls a i.icon-bar-chart:before {
+      font-size: 20px;
+      margin-top: 0px; }
+    .controls a i.icon-sync:before {
+      font-size: 20px;
+      margin-left: 3px;
+      margin-top: 1px; }
+    .controls a i.icon-download:before {
+      font-size: 19px;
+      margin-top: 1px;
+      margin-left: 4px; }
+
+.controls .button-open-url {
+    z-index: 1000;
+}
+
+.block-text {
+    font-size: 0;
+}
+
+.block-text:after {
+    content: " ";
+    width: 85px;
+    height: 4px;
+    background: white;
+    position: absolute;
+    top: 30px;
+    left: 75px;
+}
+
+.block-text:before{
+    content: " ";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid white;
+    left: 75px;
+    border-right: none;
+    border-bottom: none;
+    transform: rotate(315deg);
+    box-shadow: -2px -2px 5px 0px white;
+}
+
+.controls .button-play-pause:active:before{
+    left: 2px;
+    top: 2px;
+}
+
+.button-prev:active:before{
+    left: 2px;
+    top: 2px;
+}
+
+.button-next:active:before{
+    left: 2px;
+    top: 2px;
+}
+
+.button-vol-full:active:before{
+    left: 7px;
+    top: 2px;
+}
+
+.button-vol-mute:active:before{
+    left: 12px;
+    top: 2px;
+}
+
+.button-open-url:active:before{
+    left: 2px;
+    top: 12px;
+}
+

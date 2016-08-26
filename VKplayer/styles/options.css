@@ -95,6 +95,9 @@ body{
     height: 100%;
     padding: 10px 10px 10px 85px;
     cursor: pointer;
+    position: relative;
+    line-height: 124px;
+    text-align: center;
 }
 
 .skins__radio ~ .skins__label-in:before {
@@ -136,6 +139,8 @@ body{
     max-height: 100%;
     box-shadow: 0px 0px 10px 2px black;
     border-radius: 10px;
+    vertical-align: middle;
+    margin-top: -7px;
 }
 
 .notifications-list{
