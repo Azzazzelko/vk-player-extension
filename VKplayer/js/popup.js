@@ -37,7 +37,7 @@ $(document).ready(function () {
 		buVkOpen : function(){
 			chrome.runtime.sendMessage({action: "create-url"}, function(response) {
 	  			console.log("Запрос на бек отправлен!");
-			}); 
+			});
 		},
 
 		buPlayPause : function(){

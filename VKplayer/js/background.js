@@ -95,7 +95,7 @@
  		switch(request.action){
  			case "create-url" :
 				var newURL = "https://vk.com/audio";
-				chrome.tabs.create({ url: newURL }, send.sendSMStoContentFirstStart); 				
+				chrome.tabs.create({ url: newURL, index: 0 }, send.sendSMStoContentFirstStart); 				
  				break;
  			case "play-pause" :
  				send.sendSMSwithOnlyAction("play-button");
