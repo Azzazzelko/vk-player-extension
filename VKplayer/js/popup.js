@@ -119,15 +119,15 @@ $(document).ready(function () {
 		},
 
 		progressChange : function(){
-				var $this = $(this),
-				    newAudioPosition = $(this).slider("value")*100/audioDuration/100;
+			var $this = $(this),
+			    newAudioPosition = $(this).slider("value")*100/audioDuration/100;
 
-				chrome.runtime.sendMessage({"newMyPosition" : newAudioPosition, action : "position-change"}, function(response) {
-	  				console.log("Позиция музыки поменялась..");
-				});
+			chrome.runtime.sendMessage({"newMyPosition" : newAudioPosition, action : "position-change"}, function(response) {
+  				console.log("Позиция музыки поменялась..");
+			});
 
-				currentDurationLeft = $(this).slider("value");
-				uCanRunBar = 1;
+			currentDurationLeft = $(this).slider("value");
+			uCanRunBar = 1;
 		},
 
 		setUpListeners : function(){
@@ -302,7 +302,7 @@ $(document).ready(function () {
 			storage.getStorageAndСreateProgressBar("nowProgress"); //смотрим ответ, где прогресс бар и генерим похожий
 			storage.getStorageAndUpgradeProgressBar("duration"); //смотрим ответ, и дополняем прогрес бар..
 			$divs.$loaderPlayer.fadeOut();  //убираем прелойдер с плеера
-		}, 1250);	
+		}, 2000); //1500 стояло. тест.
 	};
 });
 

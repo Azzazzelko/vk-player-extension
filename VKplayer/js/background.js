@@ -1,8 +1,6 @@
 (function(){
 
 	// storage.clearStorage();
-	var idMyOpenTab, 	     //айди таба, который я открываю приложением
-	    findPlayer = 0; 	 //значение, есть ли вообще чем управлять, изначально фолс. При проверки, играет ли плеер, значит к нему доступ есть, значит он существует
 
 	var storage = {
 
@@ -25,29 +23,27 @@
 			setTimeout(function(){
 		    	chrome.tabs.sendMessage(tab.id, {action:"giveVK"}, function(response) {
 		    		console.log("Все успешно отослано!");
-		    		idMyOpenTab = tab.id;
+		    		localStorage.idMyOpenTab = tab.id;          //айди таба, который я открываю приложением
 		  		});
 			}, 1000);			
 		},
 
 		sendSMSwithOnlyAction : function(actionValue, tabs){   //отправка запроса на новосозданную вкладку только лиш с екшеном.
-			findPlayer = 0;
-			chrome.tabs.query( {active:true, currentWindow:true}, function(tabs) {
-    			chrome.tabs.sendMessage(idMyOpenTab, {"action" : actionValue}, function(response) {
-    				console.log("Отправил action запрос на контент.");
-    				if ( response ){
-    					findPlayer = 1;
-    				}
-  				});
-			});		
+			var _id = parseInt(localStorage.idMyOpenTab);
+			localStorage.findPlayer = 0;		               //значение, есть ли вообще чем управлять, изначально фолс. При проверки, играет ли плеер, значит к нему доступ есть, значит он существует
+			chrome.tabs.sendMessage(_id, {"action" : actionValue}, function(response) {
+				console.log("Отправил action запрос на контент.");
+				if ( response ){
+					localStorage.findPlayer = 1;
+				}
+			});			
 		},
 
 		sendSMSandDATAtoContent : function(key, value, actionValue, tabs){   //отправка запроса на новосозданную вкладку c передачей каких-то значений
-			chrome.tabs.query( {active:true, currentWindow:true}, function(tabs) {
-	    		chrome.tabs.sendMessage(idMyOpenTab, {[key] : value, "action" : actionValue}, function(response) {
-	    			console.log("Отправил какие-то данные на контент..");
-	  			});
-			});			
+			var _id = parseInt(localStorage.idMyOpenTab);
+    		chrome.tabs.sendMessage(_id, {[key] : value, "action" : actionValue}, function(response) {
+    			console.log("Отправил какие-то данные на контент..");
+  			});
 		}
 	};
 
@@ -91,7 +87,6 @@
 
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){  //получили запрос от попАпа, создали новую вкладку и её колбеком является, отправка запроса на контент этой самой вкладки.
       	console.log("Получил запрос от", ( sender.frameId == 0 ) ? "Vk." : "Extension." );
- 
  		switch(request.action){
  			case "create-url" :
 				var newURL = "https://vk.com/audio";
@@ -123,8 +118,7 @@
  			case "playORpause" :
  				send.sendSMSwithOnlyAction("playORpause");
  					setTimeout(function(){
- 							console.log(findPlayer);
- 						if ( findPlayer == 0 ) {   //проверка с тайм-аутом, если есть доступ к управлению плеером, то норм, если нет доступа, тормозим плеер, ибо он может еще играть, думая что вк еще открыто и играет
+ 						if ( localStorage.findPlayer == 0 ) {   //проверка с тайм-аутом, если есть доступ к управлению плеером, то норм, если нет доступа, тормозим плеер, ибо он может еще играть, думая что вк еще открыто и играет
 			 				setTimeout(function(){
 								storage.setStorageValue("startOrPauseStatus", "block");
 							}, 500);
